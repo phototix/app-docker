@@ -7,8 +7,8 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-install mysqli pdo pdo_mysql
 
-# Start MariaDB and configure the database
-RUN mysqld --skip-networking & \
+# Start MariaDB in the background and configure the database
+RUN service mysql start && \
     sleep 10 && \
     mysql -e "CREATE DATABASE webbycms;" && \
     mysql -e "CREATE USER 'webbycms'@'localhost' IDENTIFIED BY '#QyDexen!64A#';" && \
